@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neon Black & White Design System */
+
+@layer base {
+  :root {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 98%;
+
+    /* Neon effects */
+    --neon-white: 0 0% 98%;
+    --neon-glow: 0 0% 98%;
+    --neon-shadow: 0 0 20px hsl(var(--neon-white)), 0 0 40px hsl(var(--neon-white)), 0 0 80px hsl(var(--neon-white));
+    --neon-text-shadow: 0 0 5px hsl(var(--neon-white)), 0 0 10px hsl(var(--neon-white)), 0 0 15px hsl(var(--neon-white)), 0 0 20px hsl(var(--neon-white));
+
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-white)), hsl(var(--muted-foreground)));
+    --gradient-fade: linear-gradient(180deg, hsl(var(--neon-white)), hsl(var(--muted-foreground)));
+
+    /* Animations */
+    --transition-neon: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --pulse-neon: 0 0 20px hsl(var(--neon-white) / 0.5);
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .neon-text {
+    @apply text-primary;
+    text-shadow: var(--neon-text-shadow);
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+
+  .neon-glow {
+    box-shadow: var(--neon-shadow);
+    transition: var(--transition-neon);
+  }
+
+  .neon-button {
+    @apply bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold;
+    transition: var(--transition-neon);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+  }
+
+  .neon-button:hover {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: var(--neon-shadow);
+    transform: translateY(-2px);
+  }
+
+  .fade-text {
+    background: var(--gradient-fade);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@layer utilities {
+  @keyframes neon-pulse {
+    0% {
+      text-shadow: 0 0 5px hsl(var(--neon-white)), 0 0 10px hsl(var(--neon-white)), 0 0 15px hsl(var(--neon-white));
+    }
+    100% {
+      text-shadow: 0 0 10px hsl(var(--neon-white)), 0 0 20px hsl(var(--neon-white)), 0 0 30px hsl(var(--neon-white)), 0 0 40px hsl(var(--neon-white));
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
